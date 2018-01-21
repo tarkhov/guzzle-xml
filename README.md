@@ -5,9 +5,9 @@ Guzzle XML request.
 ### Contents
 
 1. [Installation](#installation)
-  1. [Composer](#composer)
+   1. [Composer](#composer)
 2. [Usage](#usage)
-  1. [Request options](#request-options)
+   1. [Request options](#request-options)
 3. [Author](#author)
 4. [License](#license)
 
@@ -23,7 +23,10 @@ composer require tarkhov/guzzle-xml
 
 ### Request options
 
+Following example creates POST request with XML body. Option `xml` accepts an array that is converted to XML document.
+
 ```php
+<?php
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Client;
 use GuzzleXml\Middleware;
@@ -31,7 +34,7 @@ use GuzzleXml\Middleware;
 $stack = HandlerStack::create();
 $stack->push(Middleware::xml(), 'xml');
 $client = new Client(['handler' => $stack]);
-$response = $client->post('url', [
+$response = $client->post('https://example.com', [
   'xml' => [
     'package' => [
         '@language' => 'PHP',
@@ -42,7 +45,7 @@ $response = $client->post('url', [
         ],
         'support'   => [
             'issues' => 'https://github.com/tarkhov/guzzle-xml/issues',
-            'source' => 'https://github.com/tarkhov/guzzle-xml/issues',
+            'source' => 'https://github.com/tarkhov/guzzle-xml',
         ],
     ],
   ],
