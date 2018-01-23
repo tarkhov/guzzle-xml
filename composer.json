@@ -1,7 +1,7 @@
 {
     "name": "tarkhov/guzzle-xml",
     "description": "Guzzle XML Request.",
-    "keywords": ["guzzle", "xml"],
+    "keywords": ["guzzle", "symfony", "serializer", "xml", "curl"],
     "type": "library",
     "homepage": "https://github.com/tarkhov/guzzle-xml",
     "license": "MIT",
@@ -24,6 +24,7 @@
         }
     },
     "require": {
+        "php": "^5.5.9|>=7.0.8",
         "guzzlehttp/guzzle": "^6.3",
         "symfony/serializer": "^3.4"
     }
