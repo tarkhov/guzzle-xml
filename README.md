@@ -29,10 +29,10 @@ Following example creates POST request with XML body. Option `xml` accepts an ar
 <?php
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Client;
-use GuzzleXml\Middleware;
+use GuzzleXml\XmlMiddleware;
 
 $stack = HandlerStack::create();
-$stack->push(Middleware::xml(), 'xml');
+$stack->push(XmlMiddleware::xml(), 'xml');
 $client = new Client(['handler' => $stack]);
 $response = $client->post('https://example.com', [
   'xml' => [

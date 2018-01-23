@@ -4,7 +4,7 @@ namespace GuzzleXml;
 use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
-class Middleware
+class XmlMiddleware
 {
     const HEADER_CONTENT_TYPE = 'Content-Type';
     const MIME_TYPE_XML = 'text/xml';
