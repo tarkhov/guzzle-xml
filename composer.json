@@ -24,8 +24,8 @@
         }
     },
     "require": {
-        "php": "^5.5.9|>=7.0.8",
-        "guzzlehttp/guzzle": "^6.3",
-        "symfony/serializer": "^3.4"
+        "php": ">=7.2.5",
+        "guzzlehttp/guzzle": "^7.0",
+        "symfony/serializer": "^5.0"
     }
 }

@@ -16,7 +16,9 @@ Guzzle XML request.
 
 Library | Version
 ------- | -------
-Guzzle | 6.3
+PHP | >=7.2.5
+Guzzle | >=7
+Symfony Serializer | >=5
 
 ## Installation
 
