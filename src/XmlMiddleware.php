@@ -2,6 +2,8 @@
 namespace GuzzleXml;
 
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 class XmlMiddleware
@@ -31,6 +33,32 @@ class XmlMiddleware
                     ->withBody(\GuzzleHttp\Psr7\stream_for($body));
 
                 return $handler($request, $options);
+            };
+        };
+    }
+
+    public static function jsonToXml()
+    {
+        return function (callable $handler) {
+            return function (RequestInterface $request, array $options) use ($handler) {
+                $promise = $handler($request, $options);
+                return $promise->then(
+                    function (ResponseInterface $response) {
+                        $json = $response->getBody();
+                        $encoder = new JsonEncoder();
+                        $schema = $encoder->decode($json, JsonEncoder::FORMAT);
+
+                        $root = key($schema);
+                        $data = current($schema);
+                        if (!$root || !$data) {
+                            return $response;
+                        }
+
+                        $encoder = new XmlEncoder($root);
+                        $body = $encoder->encode($data, XmlEncoder::FORMAT);
+                        return $response->withBody(\GuzzleHttp\Psr7\stream_for($body));
+                    }
+                );
             };
         };
     }

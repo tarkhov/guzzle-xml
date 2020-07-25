@@ -23,6 +23,11 @@
             "GuzzleXml\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "GuzzleXml\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^5.5.9|>=7.0.8",
         "guzzlehttp/guzzle": "^6.0",
