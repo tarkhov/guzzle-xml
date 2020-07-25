@@ -25,7 +25,10 @@
     },
     "require": {
         "php": "^5.5.9|>=7.0.8",
-        "guzzlehttp/guzzle": "~6.0",
+        "guzzlehttp/guzzle": "^6.0",
         "symfony/serializer": "^3.4"
+    },
+    "require-dev": {
+        "blastcloud/guzzler": "^1.6.1"
     }
 }
