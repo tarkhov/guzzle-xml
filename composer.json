@@ -27,5 +27,8 @@
         "php": ">=7.2.5",
         "guzzlehttp/guzzle": "^7.0",
         "symfony/serializer": "^5.0"
+    },
+    "require-dev": {
+        "blastcloud/guzzler": "^2.0"
     }
 }
