@@ -1,6 +1,6 @@
 # Guzzle XML
 
-Guzzle XML request.
+Guzzle XML request and response.
 
 ### Contents
 
@@ -9,6 +9,7 @@ Guzzle XML request.
    1. [Composer](#composer)
 3. [Usage](#usage)
    1. [Request options](#request-options)
+   2. [Response](#response)
 4. [Author](#author)
 5. [License](#license)
 
@@ -61,14 +62,32 @@ $response = $client->post('https://example.com', [
 ]);
 ```
 
+### Response
+
+Convert your JSON response to XML using middleware.
+
+```php
+<?php
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Client;
+use GuzzleXml\XmlMiddleware;
+
+$stack = HandlerStack::create();
+$stack->push(XmlMiddleware::jsonToXml());
+$client = new Client(['handler' => $stack]);
+$response = $client->post('https://example.com');
+$xml = $response->getBody();
+echo $xml;
+```
+
 ## Author
 
 **Alexander Tarkhov**
 
-* [Facebook](https://www.facebook.com/alex.tarkhov)
 * [Twitter](https://twitter.com/alextarkhov)
 * [Medium](https://medium.com/@tarkhov)
 * [LinkedIn](https://www.linkedin.com/in/tarkhov/)
+* [Facebook](https://www.facebook.com/alextarkhov)
 
 ## License
 

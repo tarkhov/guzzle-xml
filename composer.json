@@ -1,7 +1,7 @@
 {
     "name": "tarkhov/guzzle-xml",
-    "description": "Guzzle XML Request.",
-    "keywords": ["guzzle", "symfony", "serializer", "xml", "curl"],
+    "description": "Guzzle XML request and response.",
+    "keywords": ["guzzle", "symfony", "serializer", "xml", "json", "curl", "request", "response"],
     "type": "library",
     "homepage": "https://github.com/tarkhov/guzzle-xml",
     "license": "MIT",
