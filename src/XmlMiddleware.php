@@ -5,6 +5,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
 class XmlMiddleware
 {
@@ -21,12 +22,12 @@ class XmlMiddleware
                 }
 
                 $root = key($options[self::OPTION_XML]);
-                $data = current($options[self::OPTION_XML]);
-                if (!$root || !$data) {
-                    return $handler($request, $options);
+                if (!$root) {
+                    throw new NotEncodableValueException();
                 }
 
                 $encoder = new XmlEncoder($root);
+                $data = current($options[self::OPTION_XML]);
                 $body = $encoder->encode($data, XmlEncoder::FORMAT);
                 unset($options[self::OPTION_XML]);
                 $request = $request->withHeader(self::HEADER_CONTENT_TYPE, self::MIME_TYPE_XML)
@@ -44,17 +45,21 @@ class XmlMiddleware
                 $promise = $handler($request, $options);
                 return $promise->then(
                     function (ResponseInterface $response) {
-                        $json = $response->getBody();
+                        $json = (string) $response->getBody();
+                        if (!$json) {
+                            return $response;
+                        }
+
                         $encoder = new JsonEncoder();
                         $schema = $encoder->decode($json, JsonEncoder::FORMAT);
 
                         $root = key($schema);
-                        $data = current($schema);
-                        if (!$root || !$data) {
-                            return $response;
+                        if (!$root) {
+                            throw new NotEncodableValueException();
                         }
 
                         $encoder = new XmlEncoder($root);
+                        $data = current($schema);
                         $body = $encoder->encode($data, XmlEncoder::FORMAT);
                         return $response->withBody(\GuzzleHttp\Psr7\stream_for($body));
                     }
