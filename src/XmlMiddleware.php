@@ -17,17 +17,19 @@ class XmlMiddleware
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                if (empty($options[self::OPTION_XML])) {
+                if (!isset($options[self::OPTION_XML])) {
                     return $handler($request, $options);
                 }
 
                 $root = key($options[self::OPTION_XML]);
-                if (!$root) {
-                    throw new NotEncodableValueException();
+                if ($root) {
+                    $encoder = new XmlEncoder($root);
+                    $data = current($options[self::OPTION_XML]);
+                } else {
+                    $encoder = new XmlEncoder();
+                    $data = $options[self::OPTION_XML];
                 }
 
-                $encoder = new XmlEncoder($root);
-                $data = current($options[self::OPTION_XML]);
                 $body = $encoder->encode($data, XmlEncoder::FORMAT);
                 unset($options[self::OPTION_XML]);
                 $request = $request->withHeader(self::HEADER_CONTENT_TYPE, self::MIME_TYPE_XML)
