@@ -63,7 +63,8 @@ class XmlMiddleware
                         $encoder = new XmlEncoder($root);
                         $data = current($schema);
                         $body = $encoder->encode($data, XmlEncoder::FORMAT);
-                        return $response->withBody(\GuzzleHttp\Psr7\stream_for($body));
+                        return $response->withHeader(self::HEADER_CONTENT_TYPE, self::MIME_TYPE_XML)
+                            ->withBody(\GuzzleHttp\Psr7\stream_for($body));
                     }
                 );
             };
