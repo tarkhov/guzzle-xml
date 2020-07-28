@@ -1,7 +1,7 @@
 {
     "name": "tarkhov/guzzle-xml",
-    "description": "Guzzle XML Request.",
-    "keywords": ["guzzle", "symfony", "serializer", "xml", "curl"],
+    "description": "Guzzle XML request and response.",
+    "keywords": ["guzzle", "symfony", "serializer", "xml", "json", "curl", "request", "response"],
     "type": "library",
     "homepage": "https://github.com/tarkhov/guzzle-xml",
     "license": "MIT",
@@ -23,9 +23,17 @@
             "GuzzleXml\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "GuzzleXml\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^5.5.9|>=7.0.8",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^6.0",
         "symfony/serializer": "^3.4"
+    },
+    "require-dev": {
+        "blastcloud/guzzler": "^1.6.1"
     }
 }
