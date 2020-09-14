@@ -33,7 +33,7 @@ composer require tarkhov/guzzle-xml
 
 ### Request options
 
-Following example creates POST request with XML body. Option `xml` accepts an array that is converted to XML document. About array format and how converting works you can read in detail [Symfony XmlEncoder](https://symfony.com/doc/3.4/components/serializer.html#the-xmlencoder).
+Following example creates POST request with XML body. Option `xml` accepts an array that is converted to XML document. About array format and how converting works you can read in detail [Symfony XmlEncoder](https://symfony.com/doc/current/components/serializer.html#the-xmlencoder).
 
 ```php
 <?php
