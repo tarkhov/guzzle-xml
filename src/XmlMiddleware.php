@@ -23,7 +23,9 @@ class XmlMiddleware
 
                 $root = key($options[self::OPTION_XML]);
                 if ($root) {
-                    $encoder = new XmlEncoder($root);
+                    $encoder = new XmlEncoder([
+                        XmlEncoder::ROOT_NODE_NAME => $root
+                    ]);
                     $data = current($options[self::OPTION_XML]);
                 } else {
                     $encoder = new XmlEncoder();
@@ -60,7 +62,9 @@ class XmlMiddleware
                             throw new NotEncodableValueException();
                         }
 
-                        $encoder = new XmlEncoder($root);
+                        $encoder = new XmlEncoder([
+                            XmlEncoder::ROOT_NODE_NAME => $root
+                        ]);
                         $data = current($schema);
                         $body = $encoder->encode($data, XmlEncoder::FORMAT);
                         return $response->withHeader(self::HEADER_CONTENT_TYPE, self::MIME_TYPE_XML)

@@ -5,6 +5,7 @@ Guzzle XML request and response.
 ### Contents
 
 1. [Compatibility](#compatibility)
+   1. [Version support](#version-support)
 2. [Installation](#installation)
    1. [Composer](#composer)
 3. [Usage](#usage)
@@ -17,9 +18,16 @@ Guzzle XML request and response.
 
 Library | Version
 ------- | -------
-PHP | >=5.5.9 and < 7.0 or >=7.0.8
-Guzzle | >=6.0 and < 7.0
-Symfony Serializer | >= 3.4 and < 4.0
+PHP | >=7.2.5
+Guzzle | >=7.0 and < 8.0
+Symfony Serializer | >=5.0 and < 6.0
+
+### Version support
+
+Guzzle | PHP | Repo
+------- | ------- | -------
+6.x | >=5.5 | [0.x](https://github.com/tarkhov/guzzle-xml/tree/0.x)
+7.x | >=7.2 | [1.x](https://github.com/tarkhov/guzzle-xml/tree/1.x)
 
 ## Installation
 
@@ -33,7 +41,7 @@ composer require tarkhov/guzzle-xml
 
 ### Request options
 
-Following example creates POST request with XML body. Option `xml` accepts an array that is converted to XML document. About array format and how converting works you can read in detail [Symfony XmlEncoder](https://symfony.com/doc/3.4/components/serializer.html#the-xmlencoder).
+Following example creates POST request with XML body. Option `xml` accepts an array that is converted to XML document. About array format and how converting works you can read in detail [Symfony XmlEncoder](https://symfony.com/doc/current/components/serializer.html#the-xmlencoder).
 
 ```php
 <?php
