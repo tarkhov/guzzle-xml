@@ -34,7 +34,7 @@ Guzzle | PHP | Repo
 ### Composer
 
 ```bash
-composer require tarkhov/guzzle-xml
+composer require tarkhov/guzzle-xml:0.*
 ```
 
 ## Usage
