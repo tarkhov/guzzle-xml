@@ -5,6 +5,7 @@ Guzzle XML request and response.
 ### Contents
 
 1. [Compatibility](#compatibility)
+   1. [Version support](#version-support)
 2. [Installation](#installation)
    1. [Composer](#composer)
 3. [Usage](#usage)
@@ -20,6 +21,13 @@ Library | Version
 PHP | >=5.5.9 and < 7.0 or >=7.0.8
 Guzzle | >=6.0 and < 7.0
 Symfony Serializer | >= 3.4 and < 4.0
+
+### Version support
+
+Guzzle | PHP | Repo
+------- | ------- | -------
+6.x | >=5.5 | [0.x](https://github.com/tarkhov/guzzle-xml/tree/0.x)
+7.x | >=7.2 | [1.x](https://github.com/tarkhov/guzzle-xml/tree/1.x)
 
 ## Installation
 
