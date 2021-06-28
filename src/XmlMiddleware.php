@@ -32,7 +32,7 @@ class XmlMiddleware
                     $data = $options[self::OPTION_XML];
                 }
 
-                $body = $encoder->encode($data, XmlEncoder::FORMAT);
+                $body = $encoder->encode($data, XmlEncoder::FORMAT, ['xml_encoding' => 'utf-8']);
                 unset($options[self::OPTION_XML]);
                 $request = $request->withHeader(self::HEADER_CONTENT_TYPE, self::MIME_TYPE_XML)
                     ->withBody(\GuzzleHttp\Psr7\stream_for($body));
