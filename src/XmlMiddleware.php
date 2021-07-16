@@ -13,10 +13,10 @@ class XmlMiddleware
     const MIME_TYPE_XML = 'text/xml';
     const OPTION_XML = 'xml';
 
-    public static function xml(string $xmlEncoding = 'utf-8')
+    public static function xml(array $context = ['xml_encoding' => 'utf-8'])
     {
-        return function (callable $handler) use ($xmlEncoding) {
-            return function (RequestInterface $request, array $options) use ($handler, $xmlEncoding) {
+        return function (callable $handler) use ($context) {
+            return function (RequestInterface $request, array $options) use ($handler, $context) {
                 if (!isset($options[self::OPTION_XML])) {
                     return $handler($request, $options);
                 }
@@ -32,7 +32,7 @@ class XmlMiddleware
                     $data = $options[self::OPTION_XML];
                 }
 
-                $body = $encoder->encode($data, XmlEncoder::FORMAT, ['xml_encoding' => $xmlEncoding]);
+                $body = $encoder->encode($data, XmlEncoder::FORMAT, $context);
                 unset($options[self::OPTION_XML]);
                 $request = $request->withHeader(self::HEADER_CONTENT_TYPE, self::MIME_TYPE_XML)
                     ->withBody(\GuzzleHttp\Psr7\stream_for($body));
